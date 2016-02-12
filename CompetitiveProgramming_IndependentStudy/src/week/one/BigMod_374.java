@@ -1,5 +1,9 @@
 package week.one;
 
+/**
+ * ACCEPTED
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,7 +25,9 @@ public class BigMod_374 {
                                         long P = Integer.parseInt(br.readLine());
                                         long M = Integer.parseInt(br.readLine());
 
-                                        System.out.println(calculateBigMod(B, P, M));
+//                                        System.out.println(calculateBigMod(B, P, M));
+                                        System.out.println(calculateBigModBinaryMethod(B, P, M));
+
                                 }
                         }
                 } catch (IOException e) {
@@ -45,6 +51,29 @@ public class BigMod_374 {
                 }
 
                 return modValue;
+        }
+
+        private static long calculateBigModBinaryMethod(long b, long p, long m) {
+
+                if (m == 1) {
+                        return 0;
+                        
+                } else {
+                        long result = 1;
+
+                        while (p > 0) {
+
+                                if (p % 2 == 1) {
+                                        result = (result * b) % m;
+                                }
+                                p = p >> 1;
+
+                                b = (b * b) % m;
+
+                        }
+                        return result;
+
+                }
         }
 
 }
