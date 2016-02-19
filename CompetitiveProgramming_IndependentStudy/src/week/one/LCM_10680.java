@@ -14,7 +14,7 @@ public class LCM_10680 {
                 int val;
 
                 System.out.println("START");
-                ArrayList<BigInteger> results = getAllLCMFromIntRange(10000);
+                ArrayList<BigInteger> results = getAllLCMFromIntRange(1000000);
                 System.out.println("END");
 
                 while ((val = scan.nextInt()) != 0) {
@@ -45,6 +45,7 @@ public class LCM_10680 {
                 for(int i = 2; i <= val; i++) {
 
 //                        lcmResult = getLCM(lcmResult, new BigInteger(String.valueOf(i)));
+                        System.out.println(i);
                         results.add(getLCM(results.get(i-1), i));
 //                        System.out.println(i);
                 }
@@ -76,43 +77,6 @@ public class LCM_10680 {
                 return a.intValue();
         }
         
-        private static long calculateBigMod(long b, long p, long m) {
-                // TODO Auto-generated method stub
-
-                if (m == 1)
-                        return 0;
-
-                long modValue = 1;
-
-                for (int i = 1; i <= p; i++) {
-                        modValue = (modValue * b) % m;
-                }
-
-                return modValue;
-        }
-
-        private static long calculateBigModBinaryMethod(long b, long p, long m) {
-
-                if (m == 1) {
-                        return 0;
-                        
-                } else {
-                        long result = 1;
-
-                        while (p > 0) {
-
-                                if (p % 2 == 1) {
-                                        result = (result * b) % m;
-                                }
-                                p = p >> 1;
-
-                                b = (b * b) % m;
-
-                        }
-                        return result;
-
-                }
-        }
 
 
 
