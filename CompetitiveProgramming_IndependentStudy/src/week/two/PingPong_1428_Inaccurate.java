@@ -8,11 +8,11 @@ import java.util.Arrays;
 
 public class PingPong_1428_Inaccurate {
         
-        final static int MAX = 100010;
-        static byte[] arr1 = new byte[100010];
-        static byte[] arr2 = new byte[100010];
-        static byte[] arr = new byte[100010];
-        static byte[] c = new byte[100010];
+        final static int MAX = 100000;
+        static int[] arr1 = new int[100000];
+        static int[] arr2 = new int[100000];
+        static int[] arr = new int[100000];
+        static int[] c = new int[100000];
        
         public static void main(String[] args) throws IOException{
                 
@@ -31,7 +31,7 @@ public class PingPong_1428_Inaccurate {
                         
                         
                         for(int j = 0; j < numberOfPlayers; j++){
-                                arr[j] = Byte.valueOf(str[j]);   
+                                arr[j] = Integer.valueOf(str[j]);   
                         }
                         
                         Arrays.fill(c, (byte)0);
@@ -39,14 +39,14 @@ public class PingPong_1428_Inaccurate {
 
                                 add(arr[j]);
                                 
-                                arr1[j] = sum((byte) (arr[j]-1));
+                                arr1[j] = sum((arr[j]-1));
                         }
                         
                         Arrays.fill(c,(byte) 0);
                         for(int j = numberOfPlayers-1; j >= 0; j--){
                                 add(arr[j]);
                                 
-                                arr2[j] = sum((byte) (arr[j] -1));
+                                arr2[j] = sum((arr[j] -1));
                         }
                         int answer = 0;
                         
@@ -61,7 +61,7 @@ public class PingPong_1428_Inaccurate {
                 }
         }
 
-        private static byte sum(byte i) {
+        private static int sum(int i) {
                 // TODO Auto-generated method stub
                 int val = 0;
                 while(i > 0){
@@ -71,7 +71,7 @@ public class PingPong_1428_Inaccurate {
                 return (byte)val;
         }
 
-        private static void add(byte val) {
+        private static void add(int val) {
                 // TODO Auto-generated method stub
                 
                 while(val < MAX){
@@ -80,9 +80,9 @@ public class PingPong_1428_Inaccurate {
                 }
         }
 
-        private static byte lowestTwoFactor(Byte val) {
+        private static int lowestTwoFactor(int val) {
                 // TODO Auto-generated method stub
-                return (byte) (val & -val);
+                return  (val & -val);
         }
 
         
