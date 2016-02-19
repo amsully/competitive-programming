@@ -1,40 +1,47 @@
 package week.two;
 
-import java.util.*;
 
 public class PingPong_1428 {
-	public static void main(String[] args){
-		Scanner scan = new Scanner(System.in);
-		String[] line;
-		
-		int t = Integer.parseInt(scan.nextLine());
-		for (int _i = 0; _i < t; _i++){
-			line = scan.nextLine().split(" ");
-			int n = Integer.parseInt(line[0]);
-			int[] game = new int[n];
-			for (int i = 0; i < n; i++){
-				game[i] = Integer.parseInt(line[i+1]);
-			}
-			
-			runNaive(game);
-		}
-	}
-	
-	private static void runNaive(int[] game){
-		int count = 0;
-		for (int i = 0; i < game.length; i++){
-			for (int j = 0; j < i-1; j++){
-				int high = Math.max(game[i], game[j]);
-				int low = Math.min(game[i], game[j]);
-				int curr = j+1;
-				while (curr < i){
-					if (game[curr] < high && game[curr] > low){
-						count++;
-					}
-					curr++;
-				}
-			}
-		}
-		System.out.println(count);
-	}
+
 }
+
+class FenwickTree {
+
+//         T[i] += value
+        public static void add(int[] t, int i, int value) {
+          for (; i < t.length; i |= i + 1)
+            t[i] += value;
+        }
+
+        // sum[0..i]
+        public static int sum(int[] t, int i) {
+          int res = 0;
+          for (; i >= 0; i = (i & (i + 1)) - 1)
+            res += t[i];
+          return res;
+        }
+
+        ///////////////////////////////////////////////////
+
+        // T[i] = max(T[i], value)
+        public static void set(int[] t, int i, int value) {
+          for (; i < t.length; i |= i + 1)
+            t[i] = Math.max(t[i], value);
+        }
+
+        // max[0..i]
+        public static int max(int[] t, int i) {
+          int res = Integer.MIN_VALUE;
+          for (; i >= 0; i = (i & (i + 1)) - 1)
+            res = Math.max(res, t[i]);
+          return res;
+        }
+
+        // Usage example
+        public static void main(String[] args) {
+          int[] t = new int[10];
+          add(t, 0, 1);
+          add(t, 9, -2);
+          System.out.println(-1 == sum(t, 9));
+        }
+      }
