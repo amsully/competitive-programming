@@ -9,7 +9,6 @@ package week.three;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class LongestCommonSubsequence_10405 {
 
@@ -35,12 +34,6 @@ public class LongestCommonSubsequence_10405 {
 
                         }
 
-                        // Assign longer val to strOne
-                        // if (strOne.length < strTwo.length) {
-                        // char[] tmp = strOne;
-                        // strOne = strTwo;
-                        // strTwo = tmp;
-                        // }
 
                         int[] prevRow = new int[strTwo.length];
                         int[] currRow = new int[strTwo.length];
