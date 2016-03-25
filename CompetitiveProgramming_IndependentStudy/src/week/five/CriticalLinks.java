@@ -29,7 +29,7 @@ public class CriticalLinks {
                 String next = null;
                 
                 while((next = br.readLine()) != null){
-                        if(next == "") break;
+                        if(next.equals("") ) break;
                         int n = Integer.valueOf(next);
                         
                         adjacent.clear();
@@ -62,6 +62,14 @@ public class CriticalLinks {
                         for(int i = 0; i < n; i++){
                                 solve(i);
                         }
+                        
+                        System.out.println(bridge.size() + " critical links");
+                        
+                        while(bridge.size() > 0){
+                                Connection temp = bridge.poll();
+                                System.out.println(temp.a + " - " + temp.b);
+                        }
+                        System.out.println();
                         
                         
                 }
