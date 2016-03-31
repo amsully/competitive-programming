@@ -1,40 +1,83 @@
 package week.one;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class LCM_10680 {
 
-        public static void main(String[] args){
-                
+        public static void main(String[] args) {
+
                 Scanner scan = new Scanner(System.in);
-                
-                HashMap<Integer, Integer> computed = new HashMap<Integer, Integer>();
-                
+
                 int val;
-                
-                while((val = scan.nextInt()) != 0){
+
+                System.out.println("START");
+                ArrayList<BigInteger> results = getAllLCMFromIntRange(1000000);
+                System.out.println("END");
+
+                while ((val = scan.nextInt()) != 0) {
                         
-                        System.out.println(getLCM(val));
+//                        System.out.println(results.get(val).mod(new BigInteger("10")).toString());
+                        String lcm = String.valueOf(results.get(val)).replace("0", "");
                         
+//                        System.out.println(lcm);
+                        System.out.println(lcm.charAt(lcm.length()-1));
+
                 }
-                
+
         }
 
-        private static char[] getLCM(int val) {
+        private static ArrayList<BigInteger> getAllLCMFromIntRange(int val) {
                 // TODO Auto-generated method stub
+
+//                BigInteger lcmResult = BigInteger.ZERO;
+
+                ArrayList<BigInteger> results = new ArrayList<BigInteger>();// ;[100000];
+
+                results.add(BigInteger.ZERO);
+                results.add(BigInteger.ONE);
+
+//                BigInteger i = new BigInteger("2");
                 
-                Integer gcd = getGCD(val-1,val);
                 
-                return null;
+                for(int i = 2; i <= val; i++) {
+
+//                        lcmResult = getLCM(lcmResult, new BigInteger(String.valueOf(i)));
+                        System.out.println(i);
+                        results.add(getLCM(results.get(i-1), i));
+//                        System.out.println(i);
+                }
+
+                return results;
         }
 
-        private static Integer getGCD(int val, int val2) {
+        private static BigInteger getLCM(BigInteger a, int b) {
                 // TODO Auto-generated method stub
-                while(val != 0){
+
+                return a.multiply((new BigInteger(String.valueOf(b/(getGCD(a, b))))));
+
+        }
+
+        private static int getGCD(BigInteger a, int b) {
+                // TODO Auto-generated method stub
+                while (b != 0) {
+                        int temp = b;
+
+                        BigInteger modul = new BigInteger(String.valueOf(b));
                         
+                        
+                        
+                        b = a.mod(modul).intValue(); //a % b;
+
+                        a = new BigInteger(String.valueOf(temp)); // TODO: REALLY?
+//                        System.out.println(a.toString());
                 }
-                return val2;
+                return a.intValue();
         }
         
+
+
+
 }
