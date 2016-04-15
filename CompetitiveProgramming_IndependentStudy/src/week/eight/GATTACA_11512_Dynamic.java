@@ -9,7 +9,7 @@ import java.util.HashMap;
  * Attempted LCS, did not use tries to start.
  */
 
-class GATTACA_11512 {
+class GATTACA_11512_Dynamic {
 
         static int[][] lcs;
         static int[][] prevX;
