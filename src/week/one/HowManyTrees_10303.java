@@ -1,9 +1,7 @@
 package week.one;
 
 /**
- * 
  * Submitted, Accepted
- * 
  */
 
 import java.io.BufferedReader;
@@ -14,55 +12,55 @@ import java.util.LinkedList;
 
 class HowManyTrees_10303 {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-                String set;
-                try {
-                        LinkedList<Integer> allInputs = new LinkedList<Integer>();
+        String set;
+        try {
+            LinkedList<Integer> allInputs = new LinkedList<Integer>();
 
-                        BigInteger[] vals = preCompute();
-                        
-                        while ((set = br.readLine()) != null) {
-                                // System.out.println("HERE");
+            BigInteger[] vals = preCompute();
 
-                                System.out.println(vals[Integer.parseInt(set)]);
-                                
-                        }
+            while ((set = br.readLine()) != null) {
+                // System.out.println("HERE");
 
-                } catch (NumberFormatException e) {
-                        // System.exit(0);
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } catch (IOException e) {
-                        // System.exit(0);
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                }
+                System.out.println(vals[Integer.parseInt(set)]);
 
-                System.exit(0);
+            }
+
+        } catch (NumberFormatException e) {
+            // System.exit(0);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // System.exit(0);
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        System.exit(0);
+
+    }
+
+    private static BigInteger[] preCompute() {
+        // TODO Auto-generated method stub
+        BigInteger[] vals = new BigInteger[1001];
+
+        vals[1] = BigInteger.ONE;
+        BigInteger four = new BigInteger("4");
+        BigInteger two = new BigInteger("2");
+
+        for (int i = 2; i <= 1000; i++) {
+
+            // [(4n+2)vals[n-1] / (n+2)]
+            BigInteger n = new BigInteger(String.valueOf(i - 1));
+
+            vals[i] = (((four.multiply(n)).add(two)).multiply(vals[i - 1])).divide(n.add(two));
 
         }
 
-        private static BigInteger[] preCompute() {
-                // TODO Auto-generated method stub
-                BigInteger[] vals = new BigInteger[1001];
-                
-                vals[1] = BigInteger.ONE;
-                BigInteger four = new BigInteger("4");
-                BigInteger two = new BigInteger("2");
-                
-                for(int i = 2; i <= 1000; i++){
-                        
-                        // [(4n+2)vals[n-1] / (n+2)]
-                        BigInteger n = new BigInteger(String.valueOf(i-1));
-                        
-                        vals[i] = (((four.multiply(n)).add(two)).multiply(vals[i-1])).divide(n.add(two));
-                        
-                }
-                
-                return vals;
-        }
+        return vals;
+    }
 
 }

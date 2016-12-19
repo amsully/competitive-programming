@@ -36,68 +36,68 @@ import java.util.Queue;
  */
 public class FleaCircus_10938_Class {
 
-        public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-                HashMap<Integer, LinkedList<Integer>> map = new HashMap<Integer, LinkedList<Integer>>();
+        HashMap<Integer, LinkedList<Integer>> map = new HashMap<Integer, LinkedList<Integer>>();
 
-                int branch = Integer.valueOf(br.readLine());
+        int branch = Integer.valueOf(br.readLine());
 
-                for (int i = 0; i < branch - 1; i++) {
+        for (int i = 0; i < branch - 1; i++) {
 
-                        String[] tmp = br.readLine().split(" ");
-                        int val1 = Integer.parseInt(tmp[0]);
-                        int val2 = Integer.parseInt(tmp[1]);
+            String[] tmp = br.readLine().split(" ");
+            int val1 = Integer.parseInt(tmp[0]);
+            int val2 = Integer.parseInt(tmp[1]);
 
-                        if (!map.containsKey(val1)) {
+            if (!map.containsKey(val1)) {
 
-                                map.put(val1, new LinkedList<Integer>());
+                map.put(val1, new LinkedList<Integer>());
 
-                        }
-                        map.get(val1).add(val2);
-                        if( !map.containsKey(val2)){
-                                map.put(val2, new LinkedList<Integer>());
-                        }
-                        map.get(val2).add(val1);
-                         
-                        
-                }
-                
-                int fleaTrials = Integer.parseInt(br.readLine());
-                
-                for(int i = 0; i < fleaTrials; i++){
-                        String[] tmp = br.readLine().split(" ");
-                        int flea1 = Integer.parseInt(tmp[0]);
-                        int flea2 = Integer.parseInt(tmp[1]); 
-                        
-                        LinkedList<Integer> path = bfs(flea1, flea2, map);
-                }
-                
+            }
+            map.get(val1).add(val2);
+            if (!map.containsKey(val2)) {
+                map.put(val2, new LinkedList<Integer>());
+            }
+            map.get(val2).add(val1);
+
+
         }
 
-        private static LinkedList<Integer> bfs(int flea1, int flea2, HashMap<Integer, LinkedList<Integer>> map) {
-                // TODO Auto-generated method stub
-                
-                Queue<Integer> q = new LinkedList<Integer>();
-                LinkedList<Integer> p = new LinkedList<Integer>();
-                q.addAll(map.get(flea1));
-               
-                p.add(flea1);
-                
-                while(!q.isEmpty()){
-                        
-                        Integer val = q.poll();
-                        
-                        q.addAll(map.get(val));
-                        p.add(val);
-                        
-                        if(val == flea2){
-                                break;
-                        }
-                        
-                }
-                
-                return p;
+        int fleaTrials = Integer.parseInt(br.readLine());
+
+        for (int i = 0; i < fleaTrials; i++) {
+            String[] tmp = br.readLine().split(" ");
+            int flea1 = Integer.parseInt(tmp[0]);
+            int flea2 = Integer.parseInt(tmp[1]);
+
+            LinkedList<Integer> path = bfs(flea1, flea2, map);
         }
+
+    }
+
+    private static LinkedList<Integer> bfs(int flea1, int flea2, HashMap<Integer, LinkedList<Integer>> map) {
+        // TODO Auto-generated method stub
+
+        Queue<Integer> q = new LinkedList<Integer>();
+        LinkedList<Integer> p = new LinkedList<Integer>();
+        q.addAll(map.get(flea1));
+
+        p.add(flea1);
+
+        while (!q.isEmpty()) {
+
+            Integer val = q.poll();
+
+            q.addAll(map.get(val));
+            p.add(val);
+
+            if (val == flea2) {
+                break;
+            }
+
+        }
+
+        return p;
+    }
 }
