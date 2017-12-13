@@ -26,30 +26,24 @@ class Solution(object):
         x, carry = self.get_x_carry(l1, l2, 0)
 
         answer = [x]
-        # head = ListNode(x)
-        # tail = head
+        zeroNode = ListNode(0)
 
-        while(l1.next != None and l2.next != None):
-            l1 = l1.next
-            l2 = l2.next
+        while(l1.next != None or l2.next != None):
+
+            if(l1.next == None):
+                l1 = zeroNode
+            else:
+                l1 = l1.next
+            if(l2.next == None):
+                l2 = zeroNode
+            else:
+                l2 = l2.next
+
             x, carry = self.get_x_carry(l1, l2, carry)
             answer.append(x)
-            # tail.next = ListNode(x)
-            # tail = tail.next
 
-
-
-        # at most one of these while loops should ever iterate
-        while(l1.next != None):
-            l1 = l1.next
-            # tail.next = l1_head
-            # tail = tail.next
-            answer.append(x)
-        while(l2.next != None):
-            l2 = l2.next
-            # tail.next = l2_head
-            # tail = tail.next
-            answer.append(x)
+        if(carry > 0):
+            answer.append(carry)
 
         return answer
 
@@ -63,18 +57,16 @@ class Solution(object):
 
 if __name__=="__main__":
 
-    one = ListNode(1)
-    two = ListNode(2)
+    one = ListNode(0)
+    two = ListNode(5)
     one.next = two # 21
 
-    three = ListNode(3)
-    four = ListNode(4)
+    three = ListNode(0)
+    four = ListNode(5)
     three.next = four # 43
 
     sol = Solution()
 
     li = sol.addTwoNumbers(one, three)
     print(li)
-
-    #Expected output = 64
 
